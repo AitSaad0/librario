@@ -1,1 +1,2 @@
 Harry Poter,The Women,1999,AVAILABLE,FANTASY
+logan,writer,1880,AVAILABLE,FANTASY

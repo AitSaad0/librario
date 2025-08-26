@@ -7,12 +7,11 @@ public abstract class User {
     private String password; 
     private int id; 
     protected Book book; 
-    private static int counter = 0;
 
-    protected User(String fullName, String password){
+    protected User(String fullName, String password, int id){
         this.fullName = fullName; 
         this.password = password;
-        id = ++counter;
+        this.id = id;
     }
 
 }

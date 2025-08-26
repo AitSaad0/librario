@@ -9,8 +9,23 @@ import java.util.Map.Entry;
 
 public class Student extends User {
 
-    Student(String fullName, String password, int id) {
-        super(fullName, password, id);
+    public Student(int id, String fullName, String password) {
+        super(id, fullName, password);
+    }
+
+    public String getFullName(){
+        return fullName;
+    }
+    public void setFullName(String fullName){
+        this.fullName = fullName;
+    }
+
+
+    public String getPassword(){
+        return password;
+    }
+    public void setPassword(String password){
+        this.password = password;
     }
 
     public BookAvailable searchAvailbleBook(String title, HashMap<String, BookAvailable> availableBookMap)
@@ -39,6 +54,32 @@ public class Student extends User {
             }
         }
     }
+
+    public void returnBook(String title, HashMap<String, BookAvailable> availableBookMap,
+                       HashMap<String, BorrowedBook> borrowedBookMap) {
+    if (borrowedBookMap.containsKey(title)) {
+        BorrowedBook borrowedBook = borrowedBookMap.get(title);
+
+        if (borrowedBook.getBorrower().equals(this.fullName)) {
+            borrowedBookMap.remove(title);
+
+            availableBookMap.put(title, new BookAvailable(
+                    borrowedBook.getTitle(),
+                    borrowedBook.getAuthor(),
+                    borrowedBook.getYear(),
+                    borrowedBook.getCategory()
+            ));
+
+            System.out.println("You successfully returned the book: " + title);
+        } else {
+            System.out.println("You cannot return this book because it was borrowed by another student.");
+        }
+
+    } else {
+        System.out.println("You have not borrowed this book or it does not exist.");
+    }
+}
+
 
     public void bookInfo(String title, HashMap<String, BookAvailable> availableBookMap,
             HashMap<String, BorrowedBook> borrwedBookMap) {

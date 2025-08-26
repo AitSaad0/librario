@@ -21,6 +21,14 @@ public class BorrowedBook extends Book {
         this.borrower = borrower;
     }
 
+    public String getBorrower(){
+        return borrower;
+    }
+
+    public void setAuthor(String borrower){
+        this.borrower = borrower;
+    }
+
     public String toString() {
         return "The Book name is " + title + ", writed by " + author + ", published in " + year + ", it's "
                 + (availability == Availability.UNKNOWN ? "unavailable" : availability) + ", and category is : "

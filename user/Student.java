@@ -13,20 +13,7 @@ public class Student extends User {
         super(id, fullName, password);
     }
 
-    public String getFullName(){
-        return fullName;
-    }
-    public void setFullName(String fullName){
-        this.fullName = fullName;
-    }
-
-
-    public String getPassword(){
-        return password;
-    }
-    public void setPassword(String password){
-        this.password = password;
-    }
+    
 
     public BookAvailable searchAvailbleBook(String title, HashMap<String, BookAvailable> availableBookMap)
             throws NullPointerException {

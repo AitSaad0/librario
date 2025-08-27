@@ -1,16 +1,19 @@
 package main;
+
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 import book.BookAvailable;
 import book.BorrowedBook;
 import book.Controller;
 import user.Librerian;
 import user.Student;
-
 
 public class BookApp {
 
@@ -94,6 +97,30 @@ public class BookApp {
                     default:
                         System.out.println("Invalid option, try again.");
                 }
+            }
+
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter("files/bookfile.txt"))) {
+                for (Map.Entry<String, BookAvailable> entry : availableBookMap.entrySet()) {
+                    bw.write(entry.getValue().getTitle().toLowerCase() + ","
+                            + entry.getValue().getAuthor().toLowerCase() + ","
+                            + entry.getValue().getYear() + "," + entry.getValue().getAvailability() + ","
+                            + entry.getValue().getCategory());
+                    bw.newLine();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter("files/borrowedbook.txt"))) {
+                for (Map.Entry<String, BorrowedBook> entry : borrowedBookMap.entrySet()) {
+                    bw.write(entry.getValue().getTitle().toLowerCase() + ","
+                            + entry.getValue().getAuthor().toLowerCase() + ","
+                            + entry.getValue().getYear() + "," + entry.getValue().getAvailability() + ","
+                            + entry.getValue().getCategory() + "," + entry.getValue().getBorrower().toLowerCase());
+                    bw.newLine();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
         } catch (IOException e) {

@@ -13,7 +13,6 @@ public class Student extends User {
         super(id, fullName, password);
     }
 
-    
 
     public BookAvailable searchAvailbleBook(String title, HashMap<String, BookAvailable> availableBookMap)
             throws NullPointerException {

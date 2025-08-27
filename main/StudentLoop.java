@@ -43,10 +43,9 @@ public class StudentLoop {
                     break;
                 case "2":
                     System.out.print("Enter the title (q to quit): ");
-                    title = bf.readLine().trim();
+                    title = bf.readLine().trim().toLowerCase();
                     if (!title.equalsIgnoreCase("q")) {
                         currentStudent.borrowBook(title, availableBookMap, borrowedBookMap);
-                        ;
                     }
                     System.out.println(
                             "you know had " + title + " please return it after you finish reading it, enjoy :)");
@@ -74,12 +73,12 @@ public class StudentLoop {
 
         while (attempts > 0) {
             System.out.print("Username (q to quit): ");
-            String username = bf.readLine().trim();
+            String username = bf.readLine().trim().toLowerCase();
             if (username.equalsIgnoreCase("q"))
                 return null;
 
             System.out.print("Password (q to quit): ");
-            String password = bf.readLine().trim();
+            String password = bf.readLine().trim().toLowerCase();
             if (password.equalsIgnoreCase("q"))
                 return null;
 

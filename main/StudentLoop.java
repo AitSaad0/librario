@@ -15,6 +15,7 @@ public class StudentLoop {
             HashMap<String, BorrowedBook> borrowedBookMap) throws IOException {
         String input = "";
         String title = "";
+        boolean done = false;
         String fullName = currentStudent.getFullName();
 
         System.out.printf("\nwelcome %s! What do you want to do today? :)\n", fullName);
@@ -29,36 +30,53 @@ public class StudentLoop {
 
             if (input.equalsIgnoreCase("q")) {
                 System.out.println("Exiting menu...");
+                WriterIntoLogs.printLog("Student", currentStudent.getFullName(), "logout");
                 break;
             }
 
             switch (input) {
                 case "1":
                     System.out.print("Enter the title (q to quit): ");
-                    title = bf.readLine().trim();
+                    title = bf.readLine().trim().toLowerCase();
                     if (!title.equalsIgnoreCase("q")) {
-                        currentStudent.bookInfo(title, availableBookMap, borrowedBookMap);
-                        System.out.println("------------------------------------");
+                        done = currentStudent.bookInfo(title, availableBookMap, borrowedBookMap);
                     }
+                    if (done) {
+                        WriterIntoLogs.printLog("Student", currentStudent.getFullName(), "search for :", title);
+                    } else {
+                        WriterIntoLogs.printLog("Student", currentStudent.getFullName(),
+                                "search for a none existing book :", title);
+                    }
+                    System.out.println("------------------------------------");
                     break;
                 case "2":
                     System.out.print("Enter the title (q to quit): ");
                     title = bf.readLine().trim().toLowerCase();
                     if (!title.equalsIgnoreCase("q")) {
-                        currentStudent.borrowBook(title, availableBookMap, borrowedBookMap);
+                        done = currentStudent.borrowBook(title, availableBookMap, borrowedBookMap);
                     }
-                    System.out.println(
-                            "you know had " + title + " please return it after you finish reading it, enjoy :)");
+                    if (done) {
+                        System.out.println(
+                                "you know had " + title + " please return it after you finish reading it, enjoy :)");
+                        WriterIntoLogs.printLog("Student", currentStudent.getFullName(), "had borrow :", title);
+                    } else {
+                        WriterIntoLogs.printLog("Student", currentStudent.getFullName(), "try to borrow :", title);
+                    }
                     System.out.println("------------------------------------");
                     break;
                 case "3":
                     System.out.print("Enter the title (q to quit): ");
-                    title = bf.readLine().trim();
+                    title = bf.readLine().trim().toLowerCase();
                     if (!title.equalsIgnoreCase("q")) {
-                        currentStudent.returnBook(title, availableBookMap, borrowedBookMap);
+                        done = currentStudent.returnBook(title, availableBookMap, borrowedBookMap);
                     }
-
-                    System.out.println("you returned " + title + " thank you, please enjoy other book");
+                    if (done) {
+                        System.out.println("you returned " + title + " thank you, please enjoy other book");
+                        WriterIntoLogs.printLog("Student", currentStudent.getFullName(), "had return :", title);
+                    } else {
+                        WriterIntoLogs.printLog("Student", currentStudent.getFullName(),
+                                "want to return a book that he don't have :", title);
+                    }
                     System.out.println("------------------------------------");
                     break;
                 default:
@@ -67,7 +85,6 @@ public class StudentLoop {
         }
     }
 
-    
     static Student login(BufferedReader bf, HashMap<String, Student> studentMap) throws IOException {
         int attempts = 3;
 
@@ -84,6 +101,7 @@ public class StudentLoop {
 
             Student student = studentMap.get(username.toLowerCase());
             if (student != null && student.getPassword().equals(password)) {
+                WriterIntoLogs.printLog("Student", username, "login");
                 return student; // successful login
             } else {
                 attempts--;
@@ -94,7 +112,5 @@ public class StudentLoop {
         System.out.println("No attempts left. Exiting login.");
         return null;
     }
-
-
 
 }

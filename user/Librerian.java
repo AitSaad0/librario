@@ -12,19 +12,21 @@ public class Librerian extends User {
         super(id, fullName, password);
     }
 
-    public void addBook(String title,
+    public boolean addBook(String title,
             String author,
             int year,
             Category category, 
             HashMap<String, BookAvailable> map) {
                 if(map.get(title) == null){
                     map.put(title, new BookAvailable(title, author, year, category));
+                    return true;
                 }else{
                     System.out.println("this book already exist");
+                    return false;
                 }
     }
     
-    public void addBook(String title,
+    public boolean addBook(String title,
             String author,
             int year,
             Category category, 
@@ -32,8 +34,10 @@ public class Librerian extends User {
             HashMap<String, BorrowedBook> map) {
                 if(map.get(title) == null){
                     map.put(title, new BorrowedBook(title, author, year, category, borrower));
+                    return true;
                 }else{
                     System.out.println("this book already exist");
+                    return false;
                 }
     }
 

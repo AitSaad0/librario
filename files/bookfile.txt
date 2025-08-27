@@ -1,2 +1,1 @@
-logan,writer,1880,AVAILABLE,FANTASY
 second,second,2,AVAILABLE,FANTASY

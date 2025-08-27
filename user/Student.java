@@ -22,12 +22,13 @@ public class Student extends User {
         return availableBookMap.get(title);
     }
 
-    public void borrowBook(String title, HashMap<String, BookAvailable> availableBookMap,
+    public boolean borrowBook(String title, HashMap<String, BookAvailable> availableBookMap,
             HashMap<String, BorrowedBook> borrwedBookMap) {
         if (availableBookMap.containsKey(title)) {
             BookAvailable book = availableBookMap.remove(title);
             borrwedBookMap.put(title,
                     new BorrowedBook(title, book.getAuthor(), book.getYear(), book.getCategory(), this.fullName));
+                    return true;
 
         } else {
             if (borrwedBookMap.containsKey(title)) {
@@ -39,9 +40,10 @@ public class Student extends User {
                 System.exit(1); // i will change that
             }
         }
+        return false;
     }
 
-    public void returnBook(String title, HashMap<String, BookAvailable> availableBookMap,
+    public boolean returnBook(String title, HashMap<String, BookAvailable> availableBookMap,
                        HashMap<String, BorrowedBook> borrowedBookMap) {
     if (borrowedBookMap.containsKey(title)) {
         BorrowedBook borrowedBook = borrowedBookMap.get(title);
@@ -55,8 +57,7 @@ public class Student extends User {
                     borrowedBook.getYear(),
                     borrowedBook.getCategory()
             ));
-
-            System.out.println("You successfully returned the book: " + title);
+            return true;
         } else {
             System.out.println("You cannot return this book because it was borrowed by another student.");
         }
@@ -64,17 +65,21 @@ public class Student extends User {
     } else {
         System.out.println("You have not borrowed this book or it does not exist.");
     }
+    return false;
 }
 
 
-    public void bookInfo(String title, HashMap<String, BookAvailable> availableBookMap,
+    public boolean bookInfo(String title, HashMap<String, BookAvailable> availableBookMap,
             HashMap<String, BorrowedBook> borrwedBookMap) {
         if (availableBookMap.get(title) != null) {
             System.out.println(availableBookMap.get(title));
+            return true;    
         } else if (borrwedBookMap.get(title) != null) {
             System.out.println(borrwedBookMap.get(title));
+            return true;   
         } else {
             System.out.println("This book doesn't exist");
+            return false;   
             // here i want to return the list of availble books
         }
     }

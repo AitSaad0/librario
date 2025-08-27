@@ -1,0 +1,25 @@
+Student saad login at 2025-08-27 14:53:03
+Student saad had borrow : logan at 2025-08-27 14:53:15
+Student saad login at 2025-08-27 14:57:41
+Student saad try to borrow : logan at 2025-08-27 14:57:51
+Student saad search for : logan at 2025-08-27 16:02:45
+Student saad login at 2025-08-27 16:05:37
+Student saad search for : logan at 2025-08-27 16:05:44
+Student saad search for : second at 2025-08-27 16:05:50
+Student saad search for a none existing book : game at 2025-08-27 16:05:58
+Student saad try to borrow : logan at 2025-08-27 16:06:13
+Student saad search for : second at 2025-08-27 16:06:22
+Student saad had borrow : second at 2025-08-27 16:06:31
+Student saad had return : second at 2025-08-27 16:06:43
+Librerian mehdi login at 2025-08-27 16:09:41
+Librerian mehdi added an available book : second at 2025-08-27 16:10:04
+Librerian mehdi logout at 2025-08-27 16:18:31
+Librerian mehdi login at 2025-08-27 16:18:57
+Librerian mehdi added an available book : test at 2025-08-27 16:19:20
+Librerian mehdi try to add an existing available book : test at 2025-08-27 16:19:37
+Librerian mehdi remove an available book : test at 2025-08-27 16:19:53
+Librerian mehdi try to remove a none existing available book : test at 2025-08-27 16:20:02
+Librerian mehdi logout at 2025-08-27 16:22:08
+Librerian mehdi login at 2025-08-27 16:22:24
+Librerian mehdi try to remove a none borrowed book : dfnjfn at 2025-08-27 16:22:32
+Librerian mehdi logout at 2025-08-27 16:23:33
